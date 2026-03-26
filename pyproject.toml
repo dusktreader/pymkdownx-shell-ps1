@@ -1,0 +1,93 @@
+[project]
+name = "superfences-ps1"
+version = "0.1.0"
+description = "MkDocs plugin that adds a configurable shell-ps1 code fence with copy-safe prompt character"
+authors = [
+  {name = "Tucker Beck", email = "tucker.beck@gmail.com"}
+]
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE.md"]
+keywords = [
+  "mkdocs",
+  "mkdocs-plugin",
+  "plugin",
+  "pymdownx",
+  "superfences",
+  "shell",
+  "ps1",
+  "pygments",
+  "documentation",
+  "documentation-tools",
+  "mkdocs-material",
+]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Framework :: MkDocs",
+  "Topic :: Documentation",
+]
+requires-python = ">=3.12"
+dependencies = [
+  "mkdocs>=1.5.0",
+  "pymdown-extensions>=10.0",
+  "pygments>=2.16",
+]
+
+[project.entry-points."mkdocs.plugins"]
+superfences-ps1 = "superfences_ps1.plugin:ShellPromptPlugin"
+
+[project.urls]
+homepage = "https://github.com/dusktreader/superfences-ps1"
+source = "https://github.com/dusktreader/superfences-ps1"
+changelog = "https://github.com/dusktreader/superfences-ps1/blob/main/CHANGELOG.md"
+issues = "https://github.com/dusktreader/superfences-ps1/issues"
+
+[tool.uv]
+package = true
+
+[dependency-groups]
+dev = [
+  "mkdocs-material~=9.6",
+  "pre-commit>=4.5.1",
+  "pyclean~=3.1",
+  "pygments~=2.19",
+  "pytest~=8.3",
+  "pytest-cov~=6.0",
+  "pytest-pretty~=1.2",
+  "pytest-random-order~=1.1",
+  "ruff~=0.11",
+  "ty>=0.0.0a1",
+  "types-markdown>=3.10.2.20260211",
+  "typos~=1.31",
+  "yamllint>=1.38.0",
+]
+
+[build-system]
+requires = ["uv_build>=0.10.9,<0.11.0"]
+build-backend = "uv_build"
+
+[tool.ty.src]
+include = ["src", "tests"]
+
+[tool.pytest.ini_options]
+addopts = [
+  "--random-order",
+  "--cov=src/superfences_ps1",
+  "--cov-report=term-missing",
+  "--cov-fail-under=85",
+]
+
+[tool.ruff]
+line-length = 120
+src = ["src/superfences_ps1", "tests"]
+
+[tool.ruff.format]
+docstring-code-format = true
+
+[tool.typos.default]
+extend-ignore-identifiers-re = []
