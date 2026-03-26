@@ -18,6 +18,7 @@ log = get_plugin_logger(__name__)
 
 DEFAULT_FENCE_NAME = "shell-ps1"
 DEFAULT_PROMPT_CHAR = "$"
+DEFAULT_PROMPT_COLOR = "#89b0c2"
 VALID_PROMPT_CHARS = ("$", "%", "#")
 
 _SUPERFENCES_KEY = "pymdownx.superfences"
@@ -59,7 +60,7 @@ class ShellPromptPlugin(BasePlugin[ShellPromptConfig]):
       - superfences-ps1:
           fence_name: shell      # fence language identifier (default: shell)
           prompt_char: "$"       # prompt character prepended to each line (default: $)
-          prompt_color: "#89b0c2" # CSS color for the prompt character (default: unset)
+          prompt_color: "#89b0c2" # CSS color for the prompt character (default: #89b0c2)
     ```
     """
 
@@ -155,7 +156,7 @@ class ShellPromptPlugin(BasePlugin[ShellPromptConfig]):
         if "</head>" not in output:
             return output
 
-        prompt_color = self.config.prompt_color
+        prompt_color = self.config.prompt_color or DEFAULT_PROMPT_COLOR
         rules = "user-select: none;"
         if prompt_color:
             rules += f" color: {prompt_color};"

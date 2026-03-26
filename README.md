@@ -65,7 +65,7 @@ output shows the prompt visually, but the copy button and mouse selection only g
 |----------------|-----------------|-------------|----------------------------------------------------------|
 | `fence_name`   | `str`           | `shell-ps1` | The fence language identifier used in markdown           |
 | `prompt_char`  | `str`           | `$`         | The PS1 prompt character prepended to each command line  |
-| `prompt_color` | `str` or `None` | `None`      | Optional CSS color value for the rendered prompt         |
+| `prompt_color` | `str` or `None` | `#89b0c2`   | Optional CSS color value for the rendered prompt         |
 
 > [!NOTE]
 > `prompt_char` must be one of `$`, `%`, or `#` — the only characters Pygments' `BashSessionLexer` recognises as

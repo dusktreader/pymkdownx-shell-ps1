@@ -10,7 +10,7 @@ import pytest
 from mkdocs.config.defaults import MkDocsConfig
 from mkdocs.exceptions import PluginError
 
-from superfences_ps1.plugin import FormatterFn, ShellPromptPlugin, VALID_PROMPT_CHARS
+from superfences_ps1.plugin import FormatterFn, ShellPromptPlugin, VALID_PROMPT_CHARS, DEFAULT_PROMPT_COLOR
 
 
 # ---------------------------------------------------------------------------
@@ -92,7 +92,7 @@ def test_plugin_default_config():
 
     assert plugin.config.fence_name == "shell-ps1"
     assert plugin.config.prompt_char == "$"
-    assert plugin.config.prompt_color is None
+    assert plugin.config.prompt_color is None  # default applied at render time
 
 
 def test_plugin_custom_config():
@@ -385,7 +385,7 @@ def test_on_post_page__no_color_rule_when_no_prompt_color():
 
     result = plugin.on_post_page(output, page=MagicMock(), config=MagicMock())
 
-    assert "color:" not in result
+    assert f"color: {DEFAULT_PROMPT_COLOR}" in result
 
 
 def test_on_post_page__no_injection_when_no_head_tag():
